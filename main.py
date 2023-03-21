@@ -25,4 +25,3 @@ class Human():
 h1 = Human("test", "09.02.1984", "12354", "test", "cou", "add")
 h1.out()
 h1.setFio()
-h1.out()
