@@ -1,27 +1,53 @@
-"""Реализуйте класс «Человек». Необходимо хранить в
-полях класса: ФИО, дату рождения, контактный телефон,
-город, страну, домашний адрес. Реализуйте методы класса
-для ввода данных, вывода данных, реализуйте доступ к
-отдельным полям через методы класса."""
+class Transport():
+    def __init__(self, speed, oil):
+        self._speed = speed
+        self._oil = oil
 
-class Human():
+    def setSpeed(self, speed):
+        self._speed = speed
+
+    def setOil(self, oil):
+        self._oil = oil
+
+    def getSpeed(self):
+        return self._speed
     
-    def __init__(self, fio, birsdey, phone, city, country, address):
-        self.fio = fio
-        self.birsdey = birsdey
-        self.phone = phone
-        self.city = city
-        self.country = country
-        self.address = address
+    def getOil(self):
+        return self._oil
+    
+    speed = property(getSpeed, setSpeed)
+    oil = property(getOil, setOil)
 
     def out(self):
-        print("FIO = ", self.fio)
-        print(self.birsdey)
+        print(self.speed, self.oil)
 
-    def setFio(self):
-        self.fio = input("enter FIO")
+class Auto(Transport):
+    
+    def __init__(self, speed, oil, color):
+        super().__init__(speed, oil)
+        self.__color = color
 
+    def getColor(self):
+        return self.__color
+    
+    def setColor(self):
+        self.__color = input("Enter color = ")
 
-h1 = Human("test", "09.02.1984", "12354", "test", "cou", "add")
-h1.out()
-h1.setFio()
+    color = property(getColor, setColor)
+
+    def out(self):
+        print(self.speed, self.oil, self.color)
+
+listTr = [Transport(50, "92"), Auto(100, "95", "red"), Transport(120, "95"), Auto(200, "92", "green")]
+
+def out(transport):
+    for t in transport:
+        t.out()
+
+out(listTr)
+
+auto = Auto(111, "95", "black")
+auto.out()
+# auto.color = "red"  не верное обращение
+auto.setColor()
+auto.out()
